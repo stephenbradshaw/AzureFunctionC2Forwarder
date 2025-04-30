@@ -19,7 +19,7 @@ def http_trigger(req: func.HttpRequest) -> func.HttpResponse:
         logging.info('Entering handler function')
     host=os.getenv('DESTINATION')
     timeout = int(os.getenv('TIMEOUT', 20)) # override using TIMEOUT env variable
-    rpath = req.route_params.get('path')
+    rpath = req.route_params.get('path', '')
     path = f'{PROTOCOL}://{host}/{rpath}'
     data = req.get_body()   
     headers=dict(req.headers)
